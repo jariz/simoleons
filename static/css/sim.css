@@ -1,0 +1,17 @@
+@import url(//fonts.googleapis.com/css?family=Contrail+One);
+
+.footer {
+    text-align: center;
+}
+
+.stats {
+    display:block;
+}
+
+body {
+    padding-top:60px;
+}
+
+.navbar-inner .brand {
+    font-family:'Contrail One', sans-serif;
+}

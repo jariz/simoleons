@@ -25,6 +25,7 @@ body {
 
 .navbar-inner .brand {
     font-family:'Contrail One', sans-serif;
+    font-size: 16px;
 }
 
 .navbar-inner .brand:before {
@@ -104,12 +105,6 @@ input.currency {
 
 .inline.big {
     font-size:50px;
-}
-
-#from input.currency:before {
-    content:"$";
-    font-family:'icomoon';
-    display:inline-block;
 }
 
 /* little hack to disable the ugly webkit spin buttons */

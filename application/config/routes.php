@@ -41,6 +41,8 @@
 $route['default_controller'] = "sim";
 $route['404_override'] = '';
 
+$route["api/convertfrom"] = "sim/convertfrom";
+$route["api/convertto"] = "sim/convertto";
 $route["(:any)"] = "sim/page/$1";
 
 

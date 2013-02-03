@@ -21,6 +21,10 @@ class sim extends CI_Controller
     }
 
     public function convertfrom() {
+        $this->convert(true);
+    }
+
+    function convert($tosim) {
         $this->form_validation->set_rules("type", "required|max_length[3]");
         $this->form_validation->set_rules("q", "required|decimal");
 
@@ -29,11 +33,16 @@ class sim extends CI_Controller
 
         if($this->form_validation->run() != false) {
             try {
-                $this->json_die(false, null, $this->converter->toSIM($type, $q));
+                if($tosim) $this->json_die(false, null, $this->converter->toSIM($type, $q));
+                else $this->json_die(false, null, $this->converter->toMoney($type, $q));
             } catch(Exception $e) {
                 $this->json_die(true, $e->getMessage());
             }
         } else $this->json_die(true, validation_errors("", ""));
+    }
+
+    public function convertto() {
+        $this->convert(false);
     }
 
     public function page($page) {

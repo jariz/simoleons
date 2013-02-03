@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Simoleons Converter</title>
     <link href="<?base_url()?>static/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?base_url()?>static/css/sim.css" rel="stylesheet">
     <script src="//static.jariz.pro/js/jquery.min.js"></script>
@@ -25,7 +26,7 @@
         <div class="container">
             <a class="brand" href="<?=base_url()?>">Simoleons Converter</a>
             <ul class="nav">
-                {nav}<li{active}><a href="{url}">{name}</a></li>{/nav}
+                {nav}<li{active}><a href="<?=base_url()?>{url}">{name}</a></li>{/nav}
             </ul>
         </div>
     </div>

@@ -11,21 +11,27 @@
             <h1 class="moneyz"><span class="inline">$</span><span id="simoleons">32323,4,43,,433232.2.332.</span></h1>
         </div>
 
-        <?=form_open("sim/convertfrom", "class=\"convertfrom\"")?>
-        <select name="type" class="currency">
-            {curr}<option{active} value="{code}">{name}</option>{/curr}
-        </select>
-        <input name="q" type="number" step="any" autocomplete="off" class="currency">
-        <button type="submit" class="btn btn-large sim btn-success">$</button>
+        <?=form_open("api/convertfrom", "class=\"convertfrom\"")?>
+            <select name="type" class="currency">
+                {curr}<option{active} value="{code}">{name}</option>{/curr}
+            </select>
+            <input name="q" type="number" step="any" autocomplete="off" class="currency">
+            <button type="submit" class="btn btn-large sim btn-success">$</button>
         </form>
     </div>
     <div class="tab-pane" id="from">
-        <?=form_open("sim/convertfrom", "class=\"convertfrom")?></select>
-        <input name="q" type="number" step="any" autocomplete="off" class
-        <select name="type" class="currency">
-            {curr}<option{active} value="{code}">{name}</option>{/curr}
-        </select>="currency">
-        <button type="submit" class="btn btn-lawarning btn-success">$</button>
+        <div class="hero-unit to">
+            <h1 class="moneyz"><span class="inline">$</span><span id="simoleons">32323,4,43,,433232.2.332.</span></h1>
+            <span class="middle">is worth</span>
+            <h1 id="amount" class="moneyz">$655454.545</h1>
+        </div>
+
+        <?=form_open("api/convertto", "class=\"convertto\"")?>
+            <input name="q" type="number" step="any" autocomplete="off" class="currency">
+            <select name="type" class="currency">
+                {curr}<option{active} value="{code}">{name}</option>{/curr}
+            </select>
+            <button type="submit" class="btn btn-warning sim">&gt;</button>
         </form>
     </div>
 </div>

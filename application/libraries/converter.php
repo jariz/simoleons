@@ -44,6 +44,30 @@ class converter
         } else throw new Exception("Invalid input");
     }
 
+    public function toMoney($to, $amount) {
+        $amount = str_replace(",", ".", $amount);
+        if(array_key_exists($to, $this->currency) && is_numeric($amount)) {
+            if($to != "USD") {
+                $data = file_get_contents("http://rate-exchange.appspot.com/currency?from=USD&to=$to&q=$amount");
+                if($data !== FALSE) {
+                    $data = json_decode($data);
+                    if(isset($data->v))
+                        $dollar = $data->v;
+                    else throw new Exception("Invalid data returned from API, Please try again later.");
+                } else throw new Exception("Unable to connect to API :(");
+            } else $dollar = $amount;
+
+            //SICK CALCULATION WHERE THIS SITE IS PRETTY MUCH BUILD FOR :
+            $simoleons = $this->sim * $dollar;
+
+            $simoleons = $this->moneyFormat($simoleons);
+            $amount = $this->moneyFormat($amount);
+
+            return array("simoleons" => $amount, "amount" => $simoleons, "char" => $this->getCurrencySymbol($to));
+
+        } else throw new Exception("Invalid input");
+    }
+
     //this was taken from the openbudget project.
     //code.google.com/p/clearbudget/source/browse/trunk/logic/currency.class.php?r=464
     //props to them

@@ -3,8 +3,23 @@
 <head>
     <link href="<?base_url()?>static/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?base_url()?>static/css/sim.css" rel="stylesheet">
+    <script src="//static.jariz.pro/js/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script src="<?=base_url()?>static/js/sim.js"></script>
 </head>
 <body>
+<div id="error" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Unable to convert your <span class="inline">$</span>'s </h3>
+    </div>
+    <div class="modal-body">
+        <p><i class="icon-remove-circle"></i> <span id="message">You're not supposed to see this</span></p>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:$('#error').modal('hide')" class="btn btn-danger"><i class="icon-remove icon-white"></i> Close</a>
+    </div>
+</div>
 <div class="navbar navbar-fixed-top"">
     <div class="navbar-inner">
         <div class="container">
@@ -13,21 +28,40 @@
     </div>
 </div>
 <div class="container">
-    <div class="hero-unit">
-        <h1>Simoleons Converter</h1>
-        <p>Ever wanted to find out how much dollar your simoleons are worth? No? Well, you do now!<br>
-        Simoleon converter uses actual currency rates to find out how much your <span class="inline">$</span> is worth!</p>
+    <ul class="nav nav-tabs">
+        <li><a href="#to" data-toggle="tab">To <span class="inline">$</span></a></li>
+        <li><a href="#from" data-toggle="tab">From <span class="inline">$</span> </a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="to">
+            <div class="hero-unit from">
+                <h1 id="amount" class="moneyz">$655454.545</h1>
+                <span class="middle">is worth</span>
+                <h1 class="moneyz"><span class="inline">$</span><span id="simoleons">32323,4,43,,433232.2.332.</span></h1>
+            </div>
+
+            <?=form_open("sim/convertfrom", "class=\"convertfrom\"")?>
+                <select name="type" class="currency">
+                    {curr}<option{active} value="{code}">{name}</option>{/curr}
+                </select>
+                <input name="q" type="number" step="any" autocomplete="off" class="currency">
+                <button type="submit" class="btn btn-large sim btn-success">$</button>
+            </form>
+        </div>
+        <div class="tab-pane" id="from">
+            <?=form_open("sim/convertfrom", "class=\"convertfrom\"")?>
+                <select name="type" class="currency">
+                    {curr}<option{active} value="{code}">{name}</option>{/curr}
+                </select>
+                <input name="q" type="number" step="any" autocomplete="off" class="currency">
+                <button type="submit" class="btn btn-large sim btn-success">$</button>
+            </form>
+        </div>
     </div>
 
-    <?=form_open("sim/convertfrom")?>
-        <select name="type" class="currency">
-            {curr}<option{active} value="{code}">{name}</option>{/curr}
-        </select>
-        <input name="q" type="number" class="currency">
-        <button type="submit" class="btn btn-large sim btn-success">$</button>
-    </form>
     <div class="well well-small footer">
-        Another bullshit project made with &hearts; by <a href="https://github.com/jariz">@jariz</a>
+        Another bullshit project made with &hearts; and without <span class="inline">$</span> by <a href="https://github.com/jariz">@jariz</a>
         <span class="stats">Styled with <a href="http://bootswatch.com">Bootswatch Cerulean</a> and Rendered by <a href="http://codeiginiter.com">CodeIgniter</a> in {elapsed_time} secs using {memory_usage}</span>
         <span class="stats">This site is not connected to EA/Maxis. All rights reserved. <a href="http://simcity.com">Buy SimCity now</a></span>
         <iframe src="http://ghbtns.com/github-btn.html?user=jariz&repo=simoleons&type=watch" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>

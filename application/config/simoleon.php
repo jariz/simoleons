@@ -1,5 +1,6 @@
 <?php
 
+//dollar value of 1 simoleon
 $config["sim"] = 153.33;
 
 //this was taken from the openbudget project.

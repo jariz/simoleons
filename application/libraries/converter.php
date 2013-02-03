@@ -14,17 +14,32 @@ class converter
         $this->sim = $this->ci->config->item("sim");
     }
 
+    public function moneyFormat($moneyz) {
+        return number_format($moneyz, 2);
+    }
+
     //convert a currency to simoleons
     //example $this->converter->toSIM('EUR', 100);
     public function toSIM($from, $amount) {
-        var_dump($from, $this->currency);
-        if(array_key_exists($from, $this->currency) && is_numeric("")) {
+        $amount = str_replace(",", ".", $amount);
+        if(array_key_exists($from, $this->currency) && is_numeric($amount)) {
             if($from != "USD") {
                 $data = file_get_contents("http://rate-exchange.appspot.com/currency?from=$from&to=USD&q=$amount");
                 if($data !== FALSE) {
-                    var_dump($data);
+                    $data = json_decode($data);
+                    if(isset($data->v))
+                        $dollar = $data->v;
+                    else throw new Exception("Invalid data returned from API, Please try again later.");
                 } else throw new Exception("Unable to connect to API :(");
-            } else $dollar = $this->sim;
+            } else $dollar = $amount;
+
+            //SICK CALCULATION WHERE THIS SITE IS PRETTY MUCH BUILD FOR :
+            $simoleons = $dollar / $this->sim;
+
+            $simoleons = $this->moneyFormat($simoleons);
+            $amount = $this->moneyFormat($amount);
+
+            return array("simoleons" => $simoleons, "amount" => $amount, "char" => $this->getCurrencySymbol($from));
 
         } else throw new Exception("Invalid input");
     }

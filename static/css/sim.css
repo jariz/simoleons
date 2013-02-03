@@ -71,6 +71,33 @@ input.currency {
     font-family:'Contrail One', sans-serif;
 }
 
+.hero-unit h1.moneyz {
+    text-align:center;
+    display:block;
+    text-align: center;
+}
+
+.hero-unit h1.moneyz:first-child {
+    margin-top: 20px;;
+}
+
+.hero-unit h1.moneyz:last-child {
+    margin-bottom:20px;
+}
+
+.hero-unit .middle {
+    text-align: center;
+    display:block;
+}
+
+.hero-unit.from,.hero-unit.to {
+    opacity:.0;
+    height:0px;
+    overflow:hidden;
+    padding:0px;
+}
+
+
 /* little hack to disable the ugly webkit spin buttons */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {

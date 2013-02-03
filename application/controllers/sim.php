@@ -33,20 +33,20 @@ class sim extends CI_Controller
 
         if($this->form_validation->run() != false) {
             try {
-                $this->converter->toSIM($type, $q);
+                $this->json_die(false, null, $this->converter->toSIM($type, $q));
             } catch(Exception $e) {
-                show_error(($e->getMessage()));
+                $this->json_die(true, $e->getMessage());
             }
         } else $this->json_die(true, validation_errors("", ""));
     }
 
-    public function json_die($error, $message, $attr=array()) {
+    function json_die($error, $message, $attr=array()) {
         $ret = array("error" => $error, "message" => $message);
         foreach($attr as $key => $val) {
             $ret[$key] = $val;
         }
 
-        die(json_encode($ret));
+        $this->output->set_content_type("json")->set_output(json_encode($ret));
     }
 
 }

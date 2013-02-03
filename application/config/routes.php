@@ -41,7 +41,7 @@
 $route['default_controller'] = "sim";
 $route['404_override'] = '';
 
-
+$route["(:any)"] = "sim/page/$1";
 
 
 /* End of file routes.php */

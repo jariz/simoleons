@@ -97,6 +97,20 @@ input.currency {
     padding:0px;
 }
 
+#from .btn.sim {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    width: auto;
+}
+
+.inline.big {
+    font-size:50px;
+}
+
+#from input.currency:before {
+    content:"$";
+    font-family:'icomoon';
+    display:inline-block;
+}
 
 /* little hack to disable the ugly webkit spin buttons */
 input[type="number"]::-webkit-outer-spin-button,

@@ -3,6 +3,19 @@
 //dollar value of 1 simoleon
 $config["sim"] = 153.33;
 
+$config["nav"] = array(
+    array(
+        "url" => "",
+        "name" => "Home",
+        "active" => ""
+    ),
+    array(
+        "url" => "about",
+         "name" => "About",
+        "active" => ""
+    )
+);
+
 //this was taken from the openbudget project.
 //code.google.com/p/clearbudget/source/browse/trunk/logic/currency.class.php?r=464
 //props to them

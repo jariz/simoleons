@@ -17,10 +17,7 @@ class sim extends CI_Controller
     }
 
     public function index() {
-        foreach($this->config->item("currency") as $code => $data) {
-            $curr[] = array("code" => $code, "name" => $data[0], "active" => ($code == "USD" ? " selected=\"selected\"" : ""));
-        }
-        $this->parser->parse("template", array("curr" => $curr));
+        $this->page("home");
     }
 
     public function convertfrom() {
@@ -30,7 +27,6 @@ class sim extends CI_Controller
         $q = $this->input->post("q");
         $type = $this->input->post("type");
 
-
         if($this->form_validation->run() != false) {
             try {
                 $this->json_die(false, null, $this->converter->toSIM($type, $q));
@@ -38,6 +34,23 @@ class sim extends CI_Controller
                 $this->json_die(true, $e->getMessage());
             }
         } else $this->json_die(true, validation_errors("", ""));
+    }
+
+    public function page($page) {
+        foreach($this->config->item("currency") as $code => $data) {
+            $curr[] = array("code" => $code, "name" => $data[0], "active" => ($code == "USD" ? " selected=\"selected\"" : ""));
+        }
+        $nav = array();
+        foreach($this->config->item("nav") as $item) {
+            if(uri_string() == $item["url"])
+                $item["active"] = " class=\"active\"";
+            $nav[] = $item;
+        }
+
+        //die(__DIR__."/../views/pages/$page.php");
+        if(file_exists(__DIR__."/../views/pages/{$page}.php")) {
+            $this->parser->parse("template", array("content" => $this->load->view("pages/$page", '', true), "nav" => $nav, "curr" => $curr));
+        } else show_404();
     }
 
     function json_die($error, $message, $attr=array()) {

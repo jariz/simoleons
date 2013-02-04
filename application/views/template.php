@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simoleons Converter</title>
+    <title>{page}</title>
     <link href="<?base_url()?>static/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?base_url()?>static/css/sim.css" rel="stylesheet">
     <script src="//static.jariz.pro/js/jquery.min.js"></script>

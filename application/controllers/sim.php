@@ -13,7 +13,7 @@ class sim extends CI_Controller
 
         $this->load->database();
         $this->load->library(array("form_validation", "parser", "converter"));
-        $this->load->helper(array("form", "url"));
+        $this->load->helper(array("form", "url", "inflector"));
     }
 
     public function index() {
@@ -58,7 +58,7 @@ class sim extends CI_Controller
 
         //die(__DIR__."/../views/pages/$page.php");
         if(file_exists(__DIR__."/../views/pages/{$page}.php")) {
-            $this->parser->parse("template", array("content" => $this->load->view("pages/$page", '', true), "nav" => $nav, "curr" => $curr));
+            $this->parser->parse("template", array("content" => $this->load->view("pages/$page", '', true), "nav" => $nav, "curr" => $curr, "page" => strlen(($hum = humanize(uri_string()))) > 0 ? $hum." - Simoleon Converter" : "Simoleon Converter" ));
         } else show_404();
     }
 
